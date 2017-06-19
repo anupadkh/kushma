@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Jun 19, 2017 at 01:56 PM
+-- Generation Time: Jun 19, 2017 at 03:22 PM
 -- Server version: 5.7.17-0ubuntu0.16.04.1
 -- PHP Version: 7.1.3-2+deb.sury.org~xenial+1
 
@@ -19,6 +19,31 @@ SET time_zone = "+00:00";
 --
 -- Database: `mun_db`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `family_house`
+--
+
+CREATE TABLE `family_house` (
+  `id` int(11) NOT NULL,
+  `person_id` int(11) NOT NULL,
+  `gen_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `family_relation`
+--
+
+CREATE TABLE `family_relation` (
+  `id` int(11) NOT NULL,
+  `fam_id` int(11) NOT NULL,
+  `person_id` int(11) NOT NULL,
+  `Reln_type` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -172,6 +197,22 @@ CREATE TABLE `file` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `income`
+--
+
+CREATE TABLE `income` (
+  `id` int(11) NOT NULL,
+  `person_id` int(11) NOT NULL,
+  `source` varchar(300) DEFAULT NULL,
+  `type_of_income` varchar(100) DEFAULT NULL,
+  `amount` float NOT NULL,
+  `amount_type` int(11) NOT NULL,
+  `amount_desc` varchar(300) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `mymenu`
 --
 
@@ -233,6 +274,195 @@ INSERT INTO `mytables` (`id`, `tablename`, `header`, `subtables`, `defaultvalues
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `person`
+--
+
+CREATE TABLE `person` (
+  `id` int(11) NOT NULL,
+  `fname` varchar(300) NOT NULL,
+  `lname` varchar(300) DEFAULT NULL,
+  `mname` varchar(300) DEFAULT NULL,
+  `disability` int(11) NOT NULL,
+  `dob` varchar(300) DEFAULT NULL,
+  `gender` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `person_address`
+--
+
+CREATE TABLE `person_address` (
+  `id` int(11) NOT NULL,
+  `person_id` int(11) NOT NULL,
+  `country` varchar(300) NOT NULL,
+  `state` varchar(300) NOT NULL,
+  `district` varchar(300) NOT NULL,
+  `municipality` varchar(300) NOT NULL,
+  `ward` int(11) NOT NULL,
+  `street` varchar(300) DEFAULT NULL,
+  `house` int(11) DEFAULT NULL,
+  `add_type` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `person_cattle`
+--
+
+CREATE TABLE `person_cattle` (
+  `id` int(11) NOT NULL,
+  `family_id` int(11) NOT NULL,
+  `cattle_type` varchar(100) NOT NULL,
+  `cattle_name` varchar(100) NOT NULL,
+  `cattle_number` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `person_citizenship`
+--
+
+CREATE TABLE `person_citizenship` (
+  `id` int(11) NOT NULL,
+  `person_id` int(11) NOT NULL,
+  `number` int(11) NOT NULL,
+  `issued_district` int(11) NOT NULL,
+  `issued_office` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `person_contact_email`
+--
+
+CREATE TABLE `person_contact_email` (
+  `id` int(11) NOT NULL,
+  `person_id` int(11) NOT NULL,
+  `email` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `person_contact_no`
+--
+
+CREATE TABLE `person_contact_no` (
+  `id` int(11) NOT NULL,
+  `person_id` int(11) NOT NULL,
+  `contact_number` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `person_education`
+--
+
+CREATE TABLE `person_education` (
+  `id` int(11) NOT NULL,
+  `person_id` int(11) NOT NULL,
+  `qualification_type` int(11) NOT NULL,
+  `board` int(11) NOT NULL,
+  `Score` int(11) DEFAULT NULL,
+  `Percentage` float DEFAULT NULL,
+  `institution` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `person_hobby`
+--
+
+CREATE TABLE `person_hobby` (
+  `id` int(11) NOT NULL,
+  `person_id` int(11) NOT NULL,
+  `skill` varchar(300) NOT NULL,
+  `averagetime` varchar(50) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `person_job_interest`
+--
+
+CREATE TABLE `person_job_interest` (
+  `id` int(11) NOT NULL,
+  `person_id` int(11) NOT NULL,
+  `interest` int(11) NOT NULL,
+  `description` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `person_property`
+--
+
+CREATE TABLE `person_property` (
+  `id` int(11) NOT NULL,
+  `person_id` int(11) NOT NULL,
+  `property_type` int(11) NOT NULL,
+  `property_area` int(11) DEFAULT NULL,
+  `description` int(11) DEFAULT NULL,
+  `productivity` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `person_prop_business`
+--
+
+CREATE TABLE `person_prop_business` (
+  `id` int(11) NOT NULL,
+  `person_id` int(11) NOT NULL,
+  `business` varchar(300) NOT NULL,
+  `description` varchar(300) DEFAULT NULL,
+  `industry` varchar(300) DEFAULT NULL,
+  `address` varchar(300) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `person_prop_vehicle`
+--
+
+CREATE TABLE `person_prop_vehicle` (
+  `id` int(11) NOT NULL,
+  `person_id` int(11) NOT NULL,
+  `vehicle_type` int(11) NOT NULL,
+  `vehicle_reg_no` int(11) NOT NULL,
+  `vehicle_engine_no` int(11) DEFAULT NULL,
+  `vehicle_color` int(11) DEFAULT NULL,
+  `vehicle_value` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `person_services`
+--
+
+CREATE TABLE `person_services` (
+  `id` int(11) NOT NULL,
+  `person_id` int(11) NOT NULL,
+  `service_type` varchar(300) NOT NULL,
+  `service_code` int(11) DEFAULT NULL,
+  `service_number` varchar(300) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `reports`
 --
 
@@ -284,6 +514,18 @@ INSERT INTO `user` (`id`, `username`, `pwd`, `person_id`, `user_type`) VALUES
 --
 
 --
+-- Indexes for table `family_house`
+--
+ALTER TABLE `family_house`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `family_relation`
+--
+ALTER TABLE `family_relation`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `fields`
 --
 ALTER TABLE `fields`
@@ -296,6 +538,12 @@ ALTER TABLE `file`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `income`
+--
+ALTER TABLE `income`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `mymenu`
 --
 ALTER TABLE `mymenu`
@@ -305,6 +553,78 @@ ALTER TABLE `mymenu`
 -- Indexes for table `mytables`
 --
 ALTER TABLE `mytables`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `person`
+--
+ALTER TABLE `person`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `person_address`
+--
+ALTER TABLE `person_address`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `person_cattle`
+--
+ALTER TABLE `person_cattle`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `person_citizenship`
+--
+ALTER TABLE `person_citizenship`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `person_contact_email`
+--
+ALTER TABLE `person_contact_email`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `person_contact_no`
+--
+ALTER TABLE `person_contact_no`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `person_hobby`
+--
+ALTER TABLE `person_hobby`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `person_job_interest`
+--
+ALTER TABLE `person_job_interest`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `person_property`
+--
+ALTER TABLE `person_property`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `person_prop_business`
+--
+ALTER TABLE `person_prop_business`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `person_prop_vehicle`
+--
+ALTER TABLE `person_prop_vehicle`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `person_services`
+--
+ALTER TABLE `person_services`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -330,6 +650,16 @@ ALTER TABLE `user`
 --
 
 --
+-- AUTO_INCREMENT for table `family_house`
+--
+ALTER TABLE `family_house`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `family_relation`
+--
+ALTER TABLE `family_relation`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+--
 -- AUTO_INCREMENT for table `fields`
 --
 ALTER TABLE `fields`
@@ -340,15 +670,80 @@ ALTER TABLE `fields`
 ALTER TABLE `file`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
+-- AUTO_INCREMENT for table `income`
+--
+ALTER TABLE `income`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+--
 -- AUTO_INCREMENT for table `mymenu`
 --
 ALTER TABLE `mymenu`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
 --
 -- AUTO_INCREMENT for table `mytables`
 --
 ALTER TABLE `mytables`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=52;
+--
+-- AUTO_INCREMENT for table `person`
+--
+ALTER TABLE `person`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `person_address`
+--
+ALTER TABLE `person_address`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `person_cattle`
+--
+ALTER TABLE `person_cattle`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `person_citizenship`
+--
+ALTER TABLE `person_citizenship`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `person_contact_email`
+--
+ALTER TABLE `person_contact_email`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `person_contact_no`
+--
+ALTER TABLE `person_contact_no`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `person_hobby`
+--
+ALTER TABLE `person_hobby`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `person_job_interest`
+--
+ALTER TABLE `person_job_interest`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `person_property`
+--
+ALTER TABLE `person_property`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `person_prop_business`
+--
+ALTER TABLE `person_prop_business`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `person_prop_vehicle`
+--
+ALTER TABLE `person_prop_vehicle`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `person_services`
+--
+ALTER TABLE `person_services`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `reports`
 --
@@ -358,7 +753,7 @@ ALTER TABLE `reports`
 -- AUTO_INCREMENT for table `setuptables`
 --
 ALTER TABLE `setuptables`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `user`
 --
