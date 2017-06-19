@@ -1,13 +1,14 @@
 <?php  
-class attr_geojsonfile{
-			protected static $db_fields = array('id', 'filename', 'cs', 'correc', 'layername', 'identifiername');
-			protected static $table_name = "attr_geojsonfile";
+class person_prop_vehicle{
+			protected static $db_fields = array('id', 'person_id', 'vehicle_type', 'vehicle_reg_no', 'vehicle_engine_no', 'vehicle_color', 'vehicle_value');
+			protected static $table_name = "person_prop_vehicle";
 		public $id;
-		public $filename;
-		public $cs;
-		public $correc;
-		public $layername;
-		public $identifiername;
+		public $person_id;
+		public $vehicle_type;
+		public $vehicle_reg_no;
+		public $vehicle_engine_no;
+		public $vehicle_color;
+		public $vehicle_value;
 			//Common Database Methods
   public static function find_all() {
 		return self::find_by_sql("SELECT * FROM ".self::$table_name);

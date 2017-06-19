@@ -1,12 +1,14 @@
 <?php  
-class vdc{
-			protected static $db_fields = array('id', 'eng_name', 'nepl_name', 'vcode', 'mun');
-			protected static $table_name = "vdc";
+class person_education{
+			protected static $db_fields = array('id', 'person_id', 'qualification_type', 'board', 'Score', 'Percentage', 'institution');
+			protected static $table_name = "person_education";
 		public $id;
-		public $eng_name;
-		public $nepl_name;
-		public $vcode;
-		public $mun;
+		public $person_id;
+		public $qualification_type;
+		public $board;
+		public $Score;
+		public $Percentage;
+		public $institution;
 			//Common Database Methods
   public static function find_all() {
 		return self::find_by_sql("SELECT * FROM ".self::$table_name);

@@ -1,12 +1,10 @@
 <?php  
-class user{
-			protected static $db_fields = array('id', 'username', 'pwd', 'person_id', 'user_type');
-			protected static $table_name = "user";
+class person_contact_no{
+			protected static $db_fields = array('id', 'person_id', 'contact_number');
+			protected static $table_name = "person_contact_no";
 		public $id;
-		public $username;
-		public $pwd;
 		public $person_id;
-		public $user_type;
+		public $contact_number;
 			//Common Database Methods
   public static function find_all() {
 		return self::find_by_sql("SELECT * FROM ".self::$table_name);

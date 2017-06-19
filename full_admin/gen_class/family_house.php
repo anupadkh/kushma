@@ -1,11 +1,10 @@
 <?php  
-class coordinates{
-			protected static $db_fields = array('id', 'lat', 'lng', 'sub_struct_id');
-			protected static $table_name = "coordinates";
+class family_house{
+			protected static $db_fields = array('id', 'person_id', 'gen_id');
+			protected static $table_name = "family_house";
 		public $id;
-		public $lat;
-		public $lng;
-		public $sub_struct_id;
+		public $person_id;
+		public $gen_id;
 			//Common Database Methods
   public static function find_all() {
 		return self::find_by_sql("SELECT * FROM ".self::$table_name);

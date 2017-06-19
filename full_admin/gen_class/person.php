@@ -1,17 +1,14 @@
 <?php  
-class bridge{
-			protected static $db_fields = array('id', 'BridgeName', 'Length', 'Type', 'L_Bank', 'R_Bank', 'Heralu', 'VDC_sifarish', 'state', 'DCODE');
-			protected static $table_name = "bridge";
+class person{
+			protected static $db_fields = array('id', 'fname', 'lname', 'mname', 'disability', 'dob', 'gender');
+			protected static $table_name = "person";
 		public $id;
-		public $BridgeName;
-		public $Length;
-		public $Type;
-		public $L_Bank;
-		public $R_Bank;
-		public $Heralu;
-		public $VDC_sifarish;
-		public $state;
-		public $DCODE;
+		public $fname;
+		public $lname;
+		public $mname;
+		public $disability;
+		public $dob;
+		public $gender;
 			//Common Database Methods
   public static function find_all() {
 		return self::find_by_sql("SELECT * FROM ".self::$table_name);

@@ -1,10 +1,11 @@
 <?php  
-class category{
-			protected static $db_fields = array('id', 'name', 'sub_type_id');
-			protected static $table_name = "category";
+class person_job_interest{
+			protected static $db_fields = array('id', 'person_id', 'interest', 'description');
+			protected static $table_name = "person_job_interest";
 		public $id;
-		public $name;
-		public $sub_type_id;
+		public $person_id;
+		public $interest;
+		public $description;
 			//Common Database Methods
   public static function find_all() {
 		return self::find_by_sql("SELECT * FROM ".self::$table_name);

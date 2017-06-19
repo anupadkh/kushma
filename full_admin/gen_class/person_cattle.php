@@ -1,11 +1,12 @@
 <?php  
-class attrvalue{
-			protected static $db_fields = array('id', 'geojsonid', 'attrid', 'attrvalue');
-			protected static $table_name = "attrvalue";
+class person_cattle{
+			protected static $db_fields = array('id', 'family_id', 'cattle_type', 'cattle_name', 'cattle_number');
+			protected static $table_name = "person_cattle";
 		public $id;
-		public $geojsonid;
-		public $attrid;
-		public $attrvalue;
+		public $family_id;
+		public $cattle_type;
+		public $cattle_name;
+		public $cattle_number;
 			//Common Database Methods
   public static function find_all() {
 		return self::find_by_sql("SELECT * FROM ".self::$table_name);

@@ -1,12 +1,14 @@
 <?php  
-class attr_info{
-			protected static $db_fields = array('id', 'geojsonid', 'infotext', 'layerid', 'category');
-			protected static $table_name = "attr_info";
+class income{
+			protected static $db_fields = array('id', 'person_id', 'source', 'type_of_income', 'amount', 'amount_type', 'amount_desc');
+			protected static $table_name = "income";
 		public $id;
-		public $geojsonid;
-		public $infotext;
-		public $layerid;
-		public $category;
+		public $person_id;
+		public $source;
+		public $type_of_income;
+		public $amount;
+		public $amount_type;
+		public $amount_desc;
 			//Common Database Methods
   public static function find_all() {
 		return self::find_by_sql("SELECT * FROM ".self::$table_name);

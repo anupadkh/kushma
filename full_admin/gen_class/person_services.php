@@ -1,11 +1,12 @@
 <?php  
-class attrtable{
-			protected static $db_fields = array('id', 'geoid', 'attrname', 'attrnormalizer');
-			protected static $table_name = "attrtable";
+class person_services{
+			protected static $db_fields = array('id', 'person_id', 'service_type', 'service_code', 'service_number');
+			protected static $table_name = "person_services";
 		public $id;
-		public $geoid;
-		public $attrname;
-		public $attrnormalizer;
+		public $person_id;
+		public $service_type;
+		public $service_code;
+		public $service_number;
 			//Common Database Methods
   public static function find_all() {
 		return self::find_by_sql("SELECT * FROM ".self::$table_name);

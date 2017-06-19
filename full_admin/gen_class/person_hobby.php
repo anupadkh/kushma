@@ -1,12 +1,11 @@
 <?php  
-class sub_structure{
-			protected static $db_fields = array('id', 'struct_id', 'type', 'category_id', 'name');
-			protected static $table_name = "sub_structure";
+class person_hobby{
+			protected static $db_fields = array('id', 'person_id', 'skill', 'averagetime');
+			protected static $table_name = "person_hobby";
 		public $id;
-		public $struct_id;
-		public $type;
-		public $category_id;
-		public $name;
+		public $person_id;
+		public $skill;
+		public $averagetime;
 			//Common Database Methods
   public static function find_all() {
 		return self::find_by_sql("SELECT * FROM ".self::$table_name);

@@ -1,12 +1,11 @@
 <?php  
-class point_coordinates{
-			protected static $db_fields = array('id', 'bridge_id', 'left_right', 'latitude', 'longitude');
-			protected static $table_name = "point_coordinates";
+class family_relation{
+			protected static $db_fields = array('id', 'fam_id', 'person_id', 'Reln_type');
+			protected static $table_name = "family_relation";
 		public $id;
-		public $bridge_id;
-		public $left_right;
-		public $latitude;
-		public $longitude;
+		public $fam_id;
+		public $person_id;
+		public $Reln_type;
 			//Common Database Methods
   public static function find_all() {
 		return self::find_by_sql("SELECT * FROM ".self::$table_name);

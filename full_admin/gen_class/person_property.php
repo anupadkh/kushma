@@ -1,10 +1,13 @@
 <?php  
-class sub_type{
-			protected static $db_fields = array('id', 'name', 'type_id');
-			protected static $table_name = "sub_type";
+class person_property{
+			protected static $db_fields = array('id', 'person_id', 'property_type', 'property_area', 'description', 'productivity');
+			protected static $table_name = "person_property";
 		public $id;
-		public $name;
-		public $type_id;
+		public $person_id;
+		public $property_type;
+		public $property_area;
+		public $description;
+		public $productivity;
 			//Common Database Methods
   public static function find_all() {
 		return self::find_by_sql("SELECT * FROM ".self::$table_name);

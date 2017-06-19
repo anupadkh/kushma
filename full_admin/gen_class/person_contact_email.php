@@ -1,12 +1,10 @@
 <?php  
-class structure{
-			protected static $db_fields = array('id', 'name', 'description', 'site_url', 'date');
-			protected static $table_name = "structure";
+class person_contact_email{
+			protected static $db_fields = array('id', 'person_id', 'email');
+			protected static $table_name = "person_contact_email";
 		public $id;
-		public $name;
-		public $description;
-		public $site_url;
-		public $date;
+		public $person_id;
+		public $email;
 			//Common Database Methods
   public static function find_all() {
 		return self::find_by_sql("SELECT * FROM ".self::$table_name);

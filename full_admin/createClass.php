@@ -75,6 +75,7 @@ $file1 = fopen("gen_class/".  $myclass . ".php","w");
 			$code .
 			"} \n" .
 			" ?>" ;
+			// echo $output;
 fwrite($file1, $output);
 fclose($file1);
 	
