@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Jun 19, 2017 at 03:22 PM
+-- Generation Time: Jun 20, 2017 at 02:02 PM
 -- Server version: 5.7.17-0ubuntu0.16.04.1
 -- PHP Version: 7.1.3-2+deb.sury.org~xenial+1
 
@@ -32,6 +32,26 @@ CREATE TABLE `family_house` (
   `gen_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `family_house`
+--
+
+INSERT INTO `family_house` (`id`, `person_id`, `gen_id`) VALUES
+(1, 1, 169);
+
+-- --------------------------------------------------------
+
+--
+-- Stand-in structure for view `family_person`
+-- (See below for the actual view)
+--
+CREATE TABLE `family_person` (
+`fullname` text
+,`person_id` int(11)
+,`id` int(11)
+,`gen_id` int(11)
+);
+
 -- --------------------------------------------------------
 
 --
@@ -44,6 +64,13 @@ CREATE TABLE `family_relation` (
   `person_id` int(11) NOT NULL,
   `Reln_type` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `family_relation`
+--
+
+INSERT INTO `family_relation` (`id`, `fam_id`, `person_id`, `Reln_type`) VALUES
+(1, 1, 2, '4');
 
 -- --------------------------------------------------------
 
@@ -176,7 +203,99 @@ INSERT INTO `fields` (`id`, `tablename`, `field`, `type`, `eng_name`, `nepl_name
 (332, 'vdc', 'eng_name', 'text', NULL, NULL, NULL, NULL, NULL, NULL, NULL),
 (333, 'vdc', 'nepl_name', 'text', NULL, NULL, NULL, NULL, NULL, NULL, NULL),
 (334, 'vdc', 'vcode', 'text', NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(335, 'vdc', 'mun', 'text', NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+(335, 'vdc', 'mun', 'text', NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(336, 'family_house', 'id', 'hidden', NULL, NULL, NULL, NULL, NULL, NULL, 'NULL=NO,type=number'),
+(337, 'family_house', 'person_id', 'radio', 'Family', 'à¤ªà¤°à¤¿à¤µà¤¾à¤°à¤•à¥‹ à¤®à¥‚à¤²à¥€', 'table=person_full,eng=id,nepl=fullname', NULL, NULL, NULL, 'NULL=NO,type=number'),
+(338, 'family_house', 'gen_id', 'text', 'Generated Id', 'à¤ªà¤°à¤¿à¤šà¤¯à¤ªà¤¤à¥à¤° à¤¨à¤‚', NULL, NULL, NULL, NULL, 'NULL=NO,type=number'),
+(339, 'family_relation', 'id', 'hidden', NULL, NULL, NULL, NULL, NULL, NULL, 'NULL=NO,type=number'),
+(340, 'family_relation', 'fam_id', 'radio', NULL, 'à¤˜à¤°à¤•à¥‹ à¤®à¥‚à¤²à¥€', 'table=family_person,eng=fullname,nepl=person_id', NULL, NULL, NULL, 'NULL=NO,type=number'),
+(341, 'family_relation', 'person_id', 'radio', NULL, 'à¤µà¥à¤¯à¤•à¥à¤¤à¤¿', 'table=person_full,eng=id,nepl=fullname', NULL, NULL, NULL, 'NULL=NO,type=number'),
+(342, 'family_relation', 'Reln_type', 'radio', NULL, 'à¤˜à¤°à¤®à¥à¤²à¥€à¤¸à¤à¤— à¤¸à¤®à¥à¤¬à¤¨à¥à¤§à¤•à¥‹ à¤ªà¥à¤°à¤•à¤¾à¤°', NULL, NULL, '1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17', 'Husband/Wife, à¤¶à¥à¤°à¥€à¤®à¤¾à¤¨à¥ à¥¤ à¤¶à¥à¤°à¥€à¤®à¤¤à¥€,Grand Father, à¤¹à¤œà¥à¤°à¤¬à¥à¤µà¤¾, Grand Mother, à¤¹à¤œà¥à¤°à¤†à¤®à¤¾, Father, à¤¬à¥à¤µà¤¾, Mother, à¤†à¤®à¤¾, Son, à¤›à¥‹à¤°à¤¾, Daughter, à¤›à¥‹à¤°à¥€, Son-in-Law, à¤œà¤µà¤¾à¤ˆà¤, Daugher-in-Law, à¤¬à¥à¤¹à¤¾à¤°à¥€, Grand Son, à¤¨à¤¾à¤¤à¥€, Grand Daugher, à¤¨à¤¾à¤¤à¥€à¤¨à¥€, Brother, à¤­à¤¾à¤‡, Sister, à¤¬à¤¹à¤¿à¤¨à¤¿, Uncle, à¤•à¤¾à¤•à¤¾, Aunt, à¤•à¤¾à¤•à¥€, Brother-in Law, à¤¬à¤¹à¤¿à¤¨à¤¿-à¤œà¥à¤µà¤¾à¤ˆà¤, Sister-in-Law, à¤­à¤¾à¤‡ à¤¬à¥à¤¹à¤¾à¤°à¥€', 'NULL=NO,type=text'),
+(343, 'income', 'id', 'text', NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(344, 'income', 'person_id', 'text', NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(345, 'income', 'source', 'text', NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(346, 'income', 'type_of_income', 'text', NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(347, 'income', 'amount', 'text', NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(348, 'income', 'amount_type', 'text', NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(349, 'income', 'amount_desc', 'text', NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(350, 'person', 'id', 'hidden', NULL, NULL, NULL, NULL, NULL, NULL, 'NULL=NO,type=number'),
+(351, 'person', 'fname', 'text', 'First Name', 'à¤ªà¤¹à¤¿à¤²à¥‹ à¤¨à¤¾à¤®', NULL, 1, NULL, NULL, 'NULL=NO,type=text'),
+(352, 'person', 'lname', 'text', 'Last Name', 'à¤…à¤¨à¥à¤¤à¤•à¥‹ à¤¨à¤¾à¤®', NULL, 3, NULL, NULL, 'NULL=YES,type=text'),
+(353, 'person', 'mname', 'text', 'Middle Name', 'à¤µà¤¿à¤šà¤•à¥‹ à¤¨à¤¾à¤®', NULL, 2, NULL, NULL, 'NULL=YES,type=text'),
+(354, 'person', 'disability', 'radio', 'Disability', 'à¤…à¤ªà¤¾à¤™à¥à¤—à¤¤à¤¾', NULL, NULL, '1,2,3', 'No,à¤›à¥ˆà¤¨, Fullly Disabled, à¤ªà¥‚à¤°à¥à¤£ à¤…à¤ªà¤¾à¤™à¥à¤—,Partially Disabled, à¤†à¤¶à¤¿à¤‚à¤• à¤…à¤ªà¤¾à¤™à¥à¤—', 'NULL=NO,type=number'),
+(355, 'person', 'dob', 'text', 'Date of Birth', 'à¤œà¤¨à¥à¤® à¤®à¤¿à¤¤à¤¿', NULL, NULL, NULL, NULL, 'NULL=YES,type=date'),
+(356, 'person', 'gender', 'radio', 'Gender', 'à¤²à¤¿à¤™à¥à¤—', NULL, NULL, '1,2,3', 'Male,à¤ªà¥à¤°à¥à¤·,Female,à¤®à¤¹à¤¿à¤²à¤¾,Other,à¤…à¤¨à¥à¤¯,', 'NULL=NO,type=number'),
+(357, 'person_address', 'id', 'hidden', NULL, NULL, NULL, NULL, NULL, NULL, 'NULL=NO,type=number'),
+(358, 'person_address', 'person_id', 'hidden', NULL, NULL, NULL, NULL, NULL, NULL, 'NULL=NO,type=number'),
+(359, 'person_address', 'country', 'text', 'Country', NULL, NULL, NULL, NULL, NULL, 'NULL=NO,type=text'),
+(360, 'person_address', 'state', 'text', 'State', NULL, NULL, NULL, NULL, NULL, 'NULL=NO,type=text'),
+(361, 'person_address', 'district', 'text', 'District', NULL, NULL, NULL, NULL, NULL, 'NULL=NO,type=text'),
+(362, 'person_address', 'municipality', 'text', 'Municipality', NULL, NULL, NULL, NULL, NULL, 'NULL=NO,type=text'),
+(363, 'person_address', 'ward', 'text', 'Ward No.', NULL, NULL, NULL, NULL, NULL, 'NULL=NO,type=number'),
+(364, 'person_address', 'street', 'text', 'Street', NULL, NULL, NULL, NULL, NULL, 'NULL=YES,type=text'),
+(365, 'person_address', 'house', 'text', 'House No.', NULL, NULL, NULL, NULL, NULL, 'NULL=YES,type=number'),
+(366, 'person_address', 'add_type', 'hidden', NULL, NULL, NULL, NULL, NULL, NULL, 'NULL=NO,type=number'),
+(367, 'person_cattle', 'id', 'hidden', NULL, NULL, NULL, NULL, NULL, NULL, 'NULL=NO,type=number'),
+(368, 'person_cattle', 'family_id', 'hidden', NULL, NULL, NULL, NULL, NULL, NULL, 'NULL=NO,type=number'),
+(369, 'person_cattle', 'cattle_type', 'radio', 'Cattle Type', 'à¤ªà¥à¤°à¤•à¤¾à¤°', NULL, NULL, '1,2', 'Animal,à¤ªà¤¶à¥,Bird,à¤ªà¤‚à¤•à¥à¤·à¥€', 'NULL=NO,type=text'),
+(370, 'person_cattle', 'cattle_name', 'radio', 'Cattle Name', 'à¤¨à¤¾à¤®', 'table=cattle,eng=eng_name,nepl=nepl_name', NULL, NULL, NULL, 'NULL=NO,type=text'),
+(371, 'person_cattle', 'cattle_number', 'text', 'Cattle Number', 'à¤¸à¤‚à¤–à¥à¤¯à¤¾', NULL, NULL, NULL, NULL, 'NULL=NO,type=number'),
+(372, 'person_citizenship', 'id', 'hidden', NULL, NULL, NULL, NULL, NULL, NULL, 'NULL=NO,type=number'),
+(373, 'person_citizenship', 'person_id', 'hidden', NULL, NULL, NULL, NULL, NULL, NULL, 'NULL=NO,type=number'),
+(374, 'person_citizenship', 'number', 'text', 'Citizenship Certificate No.', 'à¤¨à¤¾à¤—à¤°à¤¿à¤•à¤¤à¤¾ à¤¨à¤‚', NULL, NULL, NULL, NULL, 'NULL=NO,type=number'),
+(375, 'person_citizenship', 'issued_district', 'text', 'Issue District', 'à¤œà¤¾à¤°à¥€ à¤—à¤°à¥à¤¨à¥‡ à¤œà¤¿à¤²à¥à¤²à¤¾', NULL, NULL, NULL, NULL, 'NULL=NO,type=number'),
+(376, 'person_citizenship', 'issued_office', 'text', 'Issued By Office', 'à¤œà¤¾à¤°à¥€ à¤—à¤°à¥à¤¨à¥‡ à¤¸à¤‚à¤¸à¥à¤¥à¤¾', NULL, NULL, NULL, NULL, 'NULL=NO,type=number'),
+(377, 'person_contact_email', 'id', 'hidden', NULL, NULL, NULL, NULL, NULL, NULL, 'NULL=NO,type=number'),
+(378, 'person_contact_email', 'person_id', 'hidden', NULL, NULL, NULL, NULL, NULL, NULL, 'NULL=NO,type=number'),
+(379, 'person_contact_email', 'email', 'text', 'Email', 'à¤‡à¤®à¥‡à¤²', NULL, NULL, NULL, NULL, 'NULL=NO,type=number'),
+(380, 'person_contact_no', 'id', 'hidden', NULL, NULL, NULL, NULL, NULL, NULL, 'NULL=NO,type=number'),
+(381, 'person_contact_no', 'person_id', 'hidden', NULL, NULL, NULL, NULL, NULL, NULL, 'NULL=NO,type=number'),
+(382, 'person_contact_no', 'contact_number', 'text', 'Contact No.', 'à¤«à¥‹à¤¨ à¤¨à¤‚', NULL, NULL, NULL, NULL, 'NULL=NO,type=text'),
+(383, 'person_education', 'id', 'hidden', NULL, NULL, NULL, NULL, NULL, NULL, 'NULL=NO,type=number'),
+(384, 'person_education', 'person_id', 'hidden', NULL, NULL, NULL, NULL, NULL, NULL, 'NULL=NO,type=number'),
+(385, 'person_education', 'qualification_type', 'radio', 'Qualification Degree', NULL, NULL, NULL, '1,2,3,4,5', 'School,à¤¸à¥à¤•à¥à¤²,10+2 (Intermediate),,Bachelors,,Masters,,Ph.d,', 'NULL=NO,type=number'),
+(386, 'person_education', 'board', 'text', 'Board', NULL, NULL, NULL, NULL, NULL, 'NULL=NO,type=number'),
+(387, 'person_education', 'Score', 'text', 'Score', NULL, NULL, NULL, NULL, NULL, 'NULL=YES,type=number'),
+(388, 'person_education', 'Percentage', 'text', 'Percentage', NULL, NULL, NULL, NULL, NULL, 'NULL=YES,type=text'),
+(389, 'person_education', 'institution', 'text', 'School/University/Institution', NULL, NULL, NULL, NULL, NULL, 'NULL=YES,type=number'),
+(390, 'person_hobby', 'id', 'hidden', NULL, NULL, NULL, NULL, NULL, NULL, 'NULL=NO,type=number'),
+(391, 'person_hobby', 'person_id', 'hidden', NULL, NULL, NULL, NULL, NULL, NULL, 'NULL=NO,type=number'),
+(392, 'person_hobby', 'skill', 'text', 'Skills', NULL, NULL, NULL, NULL, NULL, 'NULL=NO,type=text'),
+(393, 'person_hobby', 'averagetime', 'text', 'Average time Spent', NULL, NULL, NULL, NULL, NULL, 'NULL=YES,type=text'),
+(394, 'person_job_interest', 'id', 'hidden', NULL, NULL, NULL, NULL, NULL, NULL, 'NULL=NO,type=number'),
+(395, 'person_job_interest', 'person_id', 'hidden', NULL, NULL, NULL, NULL, NULL, NULL, 'NULL=NO,type=number'),
+(396, 'person_job_interest', 'interest', 'text', 'Job Interest', NULL, NULL, NULL, NULL, NULL, 'NULL=NO,type=number'),
+(397, 'person_job_interest', 'description', 'text', 'Description', NULL, NULL, NULL, NULL, NULL, 'NULL=YES,type=number'),
+(398, 'person_prop_business', 'id', 'hidden', NULL, NULL, NULL, NULL, NULL, NULL, 'NULL=NO,type=number'),
+(399, 'person_prop_business', 'person_id', 'hidden', NULL, NULL, NULL, NULL, NULL, NULL, 'NULL=NO,type=number'),
+(400, 'person_prop_business', 'business', 'text', 'Business', NULL, NULL, NULL, NULL, NULL, 'NULL=NO,type=text'),
+(401, 'person_prop_business', 'description', 'text', 'Description', NULL, NULL, NULL, NULL, NULL, 'NULL=YES,type=text'),
+(402, 'person_prop_business', 'industry', 'text', 'Industry', NULL, NULL, NULL, NULL, NULL, 'NULL=YES,type=text'),
+(403, 'person_prop_business', 'address', 'text', 'Address', NULL, NULL, NULL, NULL, NULL, 'NULL=YES,type=text'),
+(404, 'person_prop_vehicle', 'id', 'hidden', NULL, NULL, NULL, NULL, NULL, NULL, 'NULL=NO,type=number'),
+(405, 'person_prop_vehicle', 'person_id', 'hidden', NULL, NULL, NULL, NULL, NULL, NULL, 'NULL=NO,type=number'),
+(406, 'person_prop_vehicle', 'vehicle_type', 'radio', 'Vehicle Type', NULL, NULL, NULL, '1,2,3,4,5', 'Motorbike,,Car,,Truck,,Bus,,Van', 'NULL=NO,type=number'),
+(407, 'person_prop_vehicle', 'vehicle_reg_no', 'text', 'Vehicle Registration Number', NULL, NULL, NULL, NULL, NULL, 'NULL=NO,type=number'),
+(408, 'person_prop_vehicle', 'vehicle_engine_no', 'text', 'Vehicle Engine Number', NULL, NULL, NULL, NULL, NULL, 'NULL=YES,type=number'),
+(409, 'person_prop_vehicle', 'vehicle_color', 'text', 'Vehicle Color', NULL, NULL, NULL, NULL, NULL, 'NULL=YES,type=number'),
+(410, 'person_prop_vehicle', 'vehicle_value', 'text', 'Vehicle Value', NULL, NULL, NULL, NULL, NULL, 'NULL=YES,type=number'),
+(411, 'person_property', 'id', 'hidden', NULL, NULL, NULL, NULL, NULL, NULL, 'NULL=NO,type=number'),
+(412, 'person_property', 'person_id', 'hidden', NULL, NULL, NULL, NULL, NULL, NULL, 'NULL=NO,type=number'),
+(413, 'person_property', 'property_type', 'radio', 'Property Type', NULL, NULL, NULL, '1,2', 'Land,,Building,', 'NULL=NO,type=number'),
+(414, 'person_property', 'property_area', 'text', 'Property Area', NULL, NULL, NULL, NULL, NULL, 'NULL=YES,type=number'),
+(415, 'person_property', 'description', 'text', 'Description', NULL, NULL, NULL, NULL, NULL, 'NULL=YES,type=number'),
+(416, 'person_property', 'productivity', 'text', 'Productivity', NULL, NULL, NULL, NULL, NULL, 'NULL=YES,type=number'),
+(417, 'person_services', 'id', 'hidden', NULL, NULL, NULL, NULL, NULL, NULL, 'NULL=NO,type=number'),
+(418, 'person_services', 'person_id', 'hidden', NULL, NULL, NULL, NULL, NULL, NULL, 'NULL=NO,type=number'),
+(419, 'person_services', 'service_type', 'text', 'Type of Service', 'à¤¸à¥à¤µà¤¿à¤§à¤¾à¤•à¥‹ à¤ªà¥à¤°à¤•à¤¾à¤°', NULL, NULL, NULL, NULL, 'NULL=NO,type=text'),
+(420, 'person_services', 'service_code', 'text', 'Service Code', 'à¤¸à¥à¤µà¤¿à¤§à¤¾ à¤•à¥‹à¤¡', NULL, NULL, NULL, NULL, 'NULL=YES,type=number'),
+(421, 'person_services', 'service_number', 'text', 'Service Number', 'à¤—à¥à¤°à¤¾à¤¹à¤• à¤¨à¤‚', NULL, NULL, NULL, NULL, 'NULL=NO,type=text'),
+(422, 'family_person', 'fullname', 'text', NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(423, 'family_person', 'person_id', 'text', NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(424, 'family_person', 'id', 'text', NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(425, 'family_person', 'gen_id', 'text', NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(426, 'person_full', 'id', 'text', NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(427, 'person_full', 'fullname', 'text', NULL, NULL, NULL, NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -239,7 +358,17 @@ INSERT INTO `mymenu` (`id`, `nepl_name`, `eng_name`, `parent_id`, `weight`, `ico
 (7, 'à¤¨à¤¯à¤¾à¤ à¤ªà¥à¤°à¤¯à¥‹à¤—à¤•à¤°à¥à¤¤à¤¾', 'New User', 34, 1, 'fa fa-bolt', 'personform.php?tab=user', NULL),
 (8, 'à¤¸à¤¬à¥ˆ à¤ªà¥à¤°à¤¯à¥‹à¤—à¤•à¤°à¥à¤¤à¤¾à¤¹à¤°à¥‚', 'All Users', 34, 3, 'fa fa-desktop', 'others.php?tab=user&item=user', NULL),
 (31, 'à¤®à¥à¤–à¥à¤¯ à¤®à¥‡à¤¨à¥', 'Nav Menu', 0, 1, 'fa fa-ra', '#', NULL),
-(34, 'à¤ªà¥à¤°à¤¯à¥‹à¤—à¤•à¤°à¥à¤¤à¤¾', 'Users', 0, 7, 'fa fa-bolt', '#', '13');
+(34, 'à¤ªà¥à¤°à¤¯à¥‹à¤—à¤•à¤°à¥à¤¤à¤¾', 'Users', 0, 7, 'fa fa-bolt', '#', '13'),
+(35, 'à¤Ÿà¥‡à¤¬à¤²à¤¹à¤°à¥', 'Tables', 0, 5, 'fa fa-gift', '#', '13'),
+(36, 'à¤¸à¤¬à¥ˆ', 'All', 35, 1, 'fa fa-desktop', 'others.php?item=mytables', '13'),
+(37, 'à¤µà¥à¤¯à¤•à¥à¤¤à¤¿à¤—à¤¤ à¤µà¤¿à¤µà¤°à¤£', 'Personal Details', 0, 3, 'fa fa-leaf', '#', '13'),
+(38, 'à¤¨à¤¯à¤¾à¤', 'New', 37, 3, 'fa fa-store', 'personform.php?tab=person', '13'),
+(39, 'à¤¸à¤¬à¥ˆ', 'All', 37, 2, 'fa fa-gift', 'others.php?item=person', '13'),
+(40, 'à¤ªà¤°à¤¿à¤µà¤¾à¤°', 'Family', 0, 6, 'fa fa-eye', '#', '13'),
+(41, 'à¤¨à¤¯à¤¾à¤', 'New', 40, 1, 'fa fa-user', 'personform.php?tab=family_house', '13'),
+(42, 'à¤¸à¤¬à¥ˆ', 'All', 40, 3, 'fa fa-leaf', 'others.php?item=family_house', '13'),
+(43, 'à¤¨à¤¯à¤¾à¤ à¤ªà¤°à¤¿à¤µà¤¾à¤°à¤•à¥‹ à¤¸à¤¦à¤¸à¥à¤¯', 'New Family Member', 40, 10, 'fa fa-fire', 'personform.php?tab=family_relation', '13'),
+(44, 'à¤¸à¤¬à¥ˆ', 'All', 40, 20, 'fa fa-gift', 'others.php?item=family_relation', '13');
 
 -- --------------------------------------------------------
 
@@ -255,7 +384,7 @@ CREATE TABLE `mytables` (
   `defaultvalues` varchar(600) DEFAULT NULL,
   `extra_name` varchar(600) DEFAULT NULL,
   `file` int(11) NOT NULL DEFAULT '2',
-  `form_type` varchar(20) DEFAULT NULL
+  `form_type` varchar(200) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -269,7 +398,25 @@ INSERT INTO `mytables` (`id`, `tablename`, `header`, `subtables`, `defaultvalues
 (48, 'mytables', 'mytables', NULL, NULL, NULL, 0, NULL),
 (49, 'reports', 'reports', NULL, NULL, NULL, 0, NULL),
 (50, 'setuptables', 'setuptables', NULL, NULL, NULL, 0, NULL),
-(51, 'user', 'user', NULL, NULL, NULL, 0, NULL);
+(51, 'user', 'user', NULL, NULL, NULL, 0, NULL),
+(52, 'family_house', 'family_house', NULL, NULL, NULL, 0, NULL),
+(53, 'family_relation', 'family_relation', NULL, NULL, NULL, 0, NULL),
+(54, 'income', 'income', NULL, NULL, NULL, 0, NULL),
+(55, 'person', 'Personal Details (à¤¬à¥à¤¯à¤•à¥à¤¤à¤¿à¤—à¤¤ à¤µà¤¿à¤µà¤°à¤£)', 'person_address,person_address,person_citizenship,person_contact_email,person_contact_no,person_education,person_hobby,person_job_interest,person_property,person_prop_business,person_prop_vehicle,person_services', 'person_id+add_type=1,person_id+add_type=2,person_id,person_id,person_id,person_id,person_id,person_id,person_id,person_id,person_id,person_id', 'Permanent Address, Temporary Address, Citizenship, Contact Email, Contact Number, Qualifications, Hobbies, Job Interests,Business,Property, Vehicle, Services', 2, '1,1,1,2,2,2,2,2,2,2,2,2'),
+(56, 'person_address', 'person_address', NULL, NULL, NULL, 0, NULL),
+(57, 'person_cattle', 'person_cattle', NULL, NULL, NULL, 0, NULL),
+(58, 'person_citizenship', 'person_citizenship', NULL, NULL, NULL, 0, NULL),
+(59, 'person_contact_email', 'person_contact_email', NULL, NULL, NULL, 0, NULL),
+(60, 'person_contact_no', 'person_contact_no', NULL, NULL, NULL, 0, NULL),
+(61, 'person_education', 'person_education', NULL, NULL, NULL, 0, NULL),
+(62, 'person_hobby', 'person_hobby', NULL, NULL, NULL, 0, NULL),
+(63, 'person_job_interest', 'person_job_interest', NULL, NULL, NULL, 0, NULL),
+(64, 'person_prop_business', 'person_prop_business', NULL, NULL, NULL, 0, NULL),
+(65, 'person_prop_vehicle', 'person_prop_vehicle', NULL, NULL, NULL, 0, NULL),
+(66, 'person_property', 'person_property', NULL, NULL, NULL, 0, NULL),
+(67, 'person_services', 'person_services', NULL, NULL, NULL, 0, NULL),
+(68, 'family_person', 'family_person', NULL, NULL, NULL, 0, NULL),
+(69, 'person_full', 'person_full', NULL, NULL, NULL, 0, NULL);
 
 -- --------------------------------------------------------
 
@@ -286,6 +433,14 @@ CREATE TABLE `person` (
   `dob` varchar(300) DEFAULT NULL,
   `gender` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `person`
+--
+
+INSERT INTO `person` (`id`, `fname`, `lname`, `mname`, `disability`, `dob`, `gender`) VALUES
+(1, 'Anup', 'Adhikari', NULL, 1, NULL, 1),
+(2, 'Subash', 'Poudel', 'Chandra', 1, NULL, 1);
 
 -- --------------------------------------------------------
 
@@ -358,6 +513,14 @@ CREATE TABLE `person_contact_no` (
   `contact_number` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `person_contact_no`
+--
+
+INSERT INTO `person_contact_no` (`id`, `person_id`, `contact_number`) VALUES
+(1, 1, '9856070774'),
+(2, 1, '9846021774');
+
 -- --------------------------------------------------------
 
 --
@@ -373,6 +536,17 @@ CREATE TABLE `person_education` (
   `Percentage` float DEFAULT NULL,
   `institution` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Stand-in structure for view `person_full`
+-- (See below for the actual view)
+--
+CREATE TABLE `person_full` (
+`id` int(11)
+,`fullname` text
+);
 
 -- --------------------------------------------------------
 
@@ -508,6 +682,24 @@ CREATE TABLE `user` (
 INSERT INTO `user` (`id`, `username`, `pwd`, `person_id`, `user_type`) VALUES
 (13, 'anupadkh', 'resort', 1, 1),
 (14, 'suman', 'adkh', NULL, 1);
+
+-- --------------------------------------------------------
+
+--
+-- Structure for view `family_person`
+--
+DROP TABLE IF EXISTS `family_person`;
+
+CREATE ALGORITHM=UNDEFINED DEFINER=`mun_chairman`@`%` SQL SECURITY DEFINER VIEW `family_person`  AS  select concat(`person`.`fname`,' ',coalesce(`person`.`mname`,''),' ',`person`.`lname`) AS `fullname`,`person`.`id` AS `person_id`,`family_house`.`id` AS `id`,`family_house`.`gen_id` AS `gen_id` from (`person` join `family_house`) where (`person`.`id` = `family_house`.`person_id`) ;
+
+-- --------------------------------------------------------
+
+--
+-- Structure for view `person_full`
+--
+DROP TABLE IF EXISTS `person_full`;
+
+CREATE ALGORITHM=UNDEFINED DEFINER=`mun_chairman`@`%` SQL SECURITY DEFINER VIEW `person_full`  AS  select `person`.`id` AS `id`,concat(`person`.`fname`,' ',coalesce(`person`.`mname`,''),' ',`person`.`lname`) AS `fullname` from `person` where 1 ;
 
 --
 -- Indexes for dumped tables
@@ -653,17 +845,17 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `family_house`
 --
 ALTER TABLE `family_house`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `family_relation`
 --
 ALTER TABLE `family_relation`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `fields`
 --
 ALTER TABLE `fields`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=336;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=428;
 --
 -- AUTO_INCREMENT for table `file`
 --
@@ -678,17 +870,17 @@ ALTER TABLE `income`
 -- AUTO_INCREMENT for table `mymenu`
 --
 ALTER TABLE `mymenu`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
 --
 -- AUTO_INCREMENT for table `mytables`
 --
 ALTER TABLE `mytables`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=52;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=70;
 --
 -- AUTO_INCREMENT for table `person`
 --
 ALTER TABLE `person`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `person_address`
 --
@@ -713,7 +905,7 @@ ALTER TABLE `person_contact_email`
 -- AUTO_INCREMENT for table `person_contact_no`
 --
 ALTER TABLE `person_contact_no`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `person_hobby`
 --

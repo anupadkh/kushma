@@ -84,6 +84,7 @@
             // print_r($all_cols);
             if ($parent == NULL) {
                 if(isset($_GET['id'])){
+
                     $myvalue = $active::find_by_id($_GET['id']);
                 }else{
                     $myvalue = new $active();
@@ -135,21 +136,23 @@ echo "-->";
         $anup = "";
         foreach ($hidden_array as $key => $value){
         $myvalue->$key = $value;
-        $anup .= "{$key} = {$value} AND " ; // join keys and values
+        $anup .= "{$key}={$value} AND " ; // join keys and values
         }
+        
         // print_r($anup);
 
             unset($sql);
             $sql = "SELECT * FROM {$active} WHERE ";
             $sql .= $anup . "1";
-
+            // echo $sql;
             // echo $sql;
             $myvalue2 = $active::find_by_sql($sql)[0];
             // print_r($myvalue2);
 
             if($formstyle == 2){
                 $rec_insert=1;
-                $merosql=$sql;?>
+                $merosql=$sql;
+                // echo $merosql;?>
                 <iframe src="newlist.php?tab=<?php echo $active."&position=" .$_GET['position']; ?>" height="200" width="500"></iframe>  
                 <?php
                 $myvalue2 = new $active();
