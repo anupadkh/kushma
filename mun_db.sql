@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Jun 20, 2017 at 02:02 PM
+-- Generation Time: Jun 28, 2017 at 08:36 AM
 -- Server version: 5.7.17-0ubuntu0.16.04.1
 -- PHP Version: 7.1.3-2+deb.sury.org~xenial+1
 
@@ -37,7 +37,8 @@ CREATE TABLE `family_house` (
 --
 
 INSERT INTO `family_house` (`id`, `person_id`, `gen_id`) VALUES
-(1, 1, 169);
+(1, 1, 169),
+(2, 2, 98);
 
 -- --------------------------------------------------------
 
@@ -70,7 +71,8 @@ CREATE TABLE `family_relation` (
 --
 
 INSERT INTO `family_relation` (`id`, `fam_id`, `person_id`, `Reln_type`) VALUES
-(1, 1, 2, '4');
+(1, 1, 2, '4'),
+(2, 2, 3, '6');
 
 -- --------------------------------------------------------
 
@@ -136,7 +138,7 @@ INSERT INTO `fields` (`id`, `tablename`, `field`, `type`, `eng_name`, `nepl_name
 (259, 'mytables', 'subtables', 'text', 'Sub Tables', NULL, NULL, NULL, NULL, NULL, 'NULL=YES,type=text'),
 (260, 'mytables', 'defaultvalues', 'text', 'Default Values', NULL, NULL, NULL, NULL, NULL, 'NULL=YES,type=text'),
 (261, 'mytables', 'extra_name', 'text', 'Extra Names for Tables', NULL, NULL, NULL, NULL, NULL, 'NULL=YES,type=text'),
-(262, 'mytables', 'file', 'text', 'Uploads?', NULL, NULL, NULL, NULL, NULL, 'NULL=NO,type=number'),
+(262, 'mytables', 'file', 'radio', 'Uploads?', NULL, NULL, NULL, '1,2', 'No Uploads,,Allows Uploads,', 'NULL=NO,type=number'),
 (263, 'mytables', 'form_type', 'text', 'Form Type', NULL, NULL, NULL, NULL, NULL, 'NULL=YES,type=text'),
 (264, 'reports', 'id', 'hidden', NULL, NULL, NULL, NULL, NULL, NULL, 'NULL=NO,type=number'),
 (265, 'reports', 'tablename', 'radio', NULL, NULL, 'table=mytables,eng=tablename,nepl=header', NULL, NULL, NULL, 'NULL=NO,type=number'),
@@ -163,7 +165,7 @@ INSERT INTO `fields` (`id`, `tablename`, `field`, `type`, `eng_name`, `nepl_name
 (292, 'user', 'username', 'text', 'Username', NULL, NULL, NULL, NULL, NULL, 'NULL=NO,type=text'),
 (293, 'user', 'pwd', 'text', 'Password', NULL, NULL, NULL, NULL, NULL, 'NULL=NO,type=text'),
 (294, 'user', 'person_id', 'hidden', NULL, NULL, NULL, NULL, NULL, NULL, 'NULL=YES,type=number'),
-(295, 'user', 'user_type', 'text', 'User Type', NULL, NULL, NULL, '1,2,3', 'Admin,à¤à¤¡à¤®à¤¿à¤¨,Main User,à¤®à¥à¤–à¥à¤¯,Normal User,à¤¸à¤¾à¤®à¤¾à¤¨à¥à¤¯,Viewer,à¤¹à¥‡à¤°à¥à¤¨à¥‡', 'NULL=NO,type=number'),
+(295, 'user', 'user_type', 'radio', 'User Type', NULL, NULL, NULL, '1,2,3', 'Admin,à¤à¤¡à¤®à¤¿à¤¨,Main User,à¤®à¥à¤–à¥à¤¯,Normal User,à¤¸à¤¾à¤®à¤¾à¤¨à¥à¤¯,Viewer,à¤¹à¥‡à¤°à¥à¤¨à¥‡', 'NULL=NO,type=number'),
 (296, 'sub_structure', 'name', 'text', 'Name ', NULL, NULL, NULL, NULL, NULL, 'NULL=NO,type=number'),
 (297, 'attr_geojsonfile', 'id', 'hidden', NULL, NULL, NULL, NULL, NULL, NULL, 'NULL=NO,type=number'),
 (298, 'attr_geojsonfile', 'filename', 'text', NULL, NULL, NULL, NULL, NULL, NULL, 'NULL=NO,type=text'),
@@ -368,7 +370,7 @@ INSERT INTO `mymenu` (`id`, `nepl_name`, `eng_name`, `parent_id`, `weight`, `ico
 (41, 'à¤¨à¤¯à¤¾à¤', 'New', 40, 1, 'fa fa-user', 'personform.php?tab=family_house', '13'),
 (42, 'à¤¸à¤¬à¥ˆ', 'All', 40, 3, 'fa fa-leaf', 'others.php?item=family_house', '13'),
 (43, 'à¤¨à¤¯à¤¾à¤ à¤ªà¤°à¤¿à¤µà¤¾à¤°à¤•à¥‹ à¤¸à¤¦à¤¸à¥à¤¯', 'New Family Member', 40, 10, 'fa fa-fire', 'personform.php?tab=family_relation', '13'),
-(44, 'à¤¸à¤¬à¥ˆ', 'All', 40, 20, 'fa fa-gift', 'others.php?item=family_relation', '13');
+(44, 'à¤¸à¤¬à¥ˆ à¤ªà¤°à¤¿à¤µà¤¾à¤° à¤¸à¤¦à¤¸à¥à¤¯à¤•à¥‹ à¤¸à¤®à¥à¤¬à¤¨à¥à¤§', 'All Family Relations', 40, 20, 'fa fa-gift', 'others.php?item=family_relation', '13');
 
 -- --------------------------------------------------------
 
@@ -398,7 +400,7 @@ INSERT INTO `mytables` (`id`, `tablename`, `header`, `subtables`, `defaultvalues
 (48, 'mytables', 'mytables', NULL, NULL, NULL, 0, NULL),
 (49, 'reports', 'reports', NULL, NULL, NULL, 0, NULL),
 (50, 'setuptables', 'setuptables', NULL, NULL, NULL, 0, NULL),
-(51, 'user', 'user', NULL, NULL, NULL, 0, NULL),
+(51, 'user', 'user', NULL, NULL, NULL, 2, NULL),
 (52, 'family_house', 'family_house', NULL, NULL, NULL, 0, NULL),
 (53, 'family_relation', 'family_relation', NULL, NULL, NULL, 0, NULL),
 (54, 'income', 'income', NULL, NULL, NULL, 0, NULL),
@@ -440,7 +442,8 @@ CREATE TABLE `person` (
 
 INSERT INTO `person` (`id`, `fname`, `lname`, `mname`, `disability`, `dob`, `gender`) VALUES
 (1, 'Anup', 'Adhikari', NULL, 1, NULL, 1),
-(2, 'Subash', 'Poudel', 'Chandra', 1, NULL, 1);
+(2, 'Subash', 'Poudel', 'Chandra', 1, NULL, 1),
+(3, 'Bal', 'Sharma', 'Krishna', 1, '1977-10-07', 1);
 
 -- --------------------------------------------------------
 
@@ -460,6 +463,13 @@ CREATE TABLE `person_address` (
   `house` int(11) DEFAULT NULL,
   `add_type` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `person_address`
+--
+
+INSERT INTO `person_address` (`id`, `person_id`, `country`, `state`, `district`, `municipality`, `ward`, `street`, `house`, `add_type`) VALUES
+(1, 3, 'Nepal', '4', 'Parbat', 'Kushma', 7, 'Khariya', 0, 1);
 
 -- --------------------------------------------------------
 
@@ -519,7 +529,8 @@ CREATE TABLE `person_contact_no` (
 
 INSERT INTO `person_contact_no` (`id`, `person_id`, `contact_number`) VALUES
 (1, 1, '9856070774'),
-(2, 1, '9846021774');
+(2, 1, '9846021774'),
+(3, 3, '9857630703');
 
 -- --------------------------------------------------------
 
@@ -681,7 +692,8 @@ CREATE TABLE `user` (
 
 INSERT INTO `user` (`id`, `username`, `pwd`, `person_id`, `user_type`) VALUES
 (13, 'anupadkh', 'resort', 1, 1),
-(14, 'suman', 'adkh', NULL, 1);
+(14, 'suman', 'adkh', NULL, 1),
+(15, 'madangrg', 'madan', NULL, 3);
 
 -- --------------------------------------------------------
 
@@ -845,12 +857,12 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `family_house`
 --
 ALTER TABLE `family_house`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `family_relation`
 --
 ALTER TABLE `family_relation`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `fields`
 --
@@ -880,12 +892,12 @@ ALTER TABLE `mytables`
 -- AUTO_INCREMENT for table `person`
 --
 ALTER TABLE `person`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT for table `person_address`
 --
 ALTER TABLE `person_address`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `person_cattle`
 --
@@ -905,7 +917,7 @@ ALTER TABLE `person_contact_email`
 -- AUTO_INCREMENT for table `person_contact_no`
 --
 ALTER TABLE `person_contact_no`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT for table `person_hobby`
 --
@@ -950,7 +962,7 @@ ALTER TABLE `setuptables`
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
